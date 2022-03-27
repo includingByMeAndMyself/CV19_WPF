@@ -5,17 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:CV19.ViewModels"
         xmlns:l="clr-namespace:CV19"
-        Title="{Binding Path=Titel}" 
+        Title="{Binding Path=Title}" 
         Height="450" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        <TextBox Margin ="36,30"
-                 VerticalAlignment ="Top"
-                 HorizontalAlignment="Left"
-                 Width="300"
-                 Text="{Binding Titel, UpdateSourceTrigger=PropertyChanged}"
-                 TextWrapping="Wrap"/>
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header ="Файл">
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+            <MenuItem Header ="Помощь"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Progress: "/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar Width="150"
+                             Height="14"
+                             Value="39"/>
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl>
+            <TabItem Header="Page 1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="271*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150*"/>
+                        <ColumnDefinition Width="765*"/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" Grid.Row="0"
+                               Margin="10,10"
+                               Fill="Blue" Stroke="Red"
+                               StrokeThickness="3"
+                               RadiusX="20" RadiusY="20"/>
+                    <Ellipse Grid.Column="1" Grid.Row="0"
+                             Fill="Red" Stroke="Blue"
+                             StrokeThickness="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Page 2"></TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>

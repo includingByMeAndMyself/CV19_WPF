@@ -6,14 +6,14 @@ namespace CV19.ViewModels
     {
         #region Заголовок окна
 
-        private string _titel = "Анализ статистики CV19";
+        private string _title = "Анализ статистики CV19";
 
         /// <summary>Заголовок окна</summary>
-        public string Titel
+        public string Title
         {
-            get => _titel;
+            get => _title;
  
-            set => Set(ref _titel, value);
+            set => Set(ref _title, value);
         }
 
         #endregion
