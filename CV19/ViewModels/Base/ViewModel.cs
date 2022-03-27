@@ -1,18 +1,41 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace CV19.ViewModels.Base
 {
-    internal abstract class ViewModel : INotifyPropertyChanged
+    internal abstract class ViewModel : INotifyPropertyChanged, IDisposable
     {
+        private bool _disposed;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
+        public void Dispose()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
+            Dispose(true);
+        }
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if(!disposing || _disposed)
+            {
+                return;
+            }
+
+            _disposed = true;
         }
 
-        protected virtual bool Set<T> (ref T field, T value, [CallerMemberName] string PropertyName = null)
+        //~ViewModel()
+        //{
+        //    Dispose(false);
+        //}
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual bool Set<T> (ref T field, T value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(field, value))
             {
@@ -20,7 +43,7 @@ namespace CV19.ViewModels.Base
             }
                 
             field = value;
-            OnPropertyChanged(PropertyName);
+            OnPropertyChanged(propertyName);
             return true;
         }
     }
