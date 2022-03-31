@@ -48,6 +48,8 @@ namespace CV19.ViewModels
         
         #endregion
 
+
+
         #endregion
 
         public MainWindowViewModel()
