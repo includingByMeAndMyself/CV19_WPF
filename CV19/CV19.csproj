@@ -14,7 +14,18 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome5" Version="2.1.6" />
-    <PackageReference Include="OxyPlot.Wpf" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OxyPlot">
+      <HintPath>bin\Debug\netcoreapp3.1\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf">
+      <HintPath>bin\Debug\netcoreapp3.1\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf.Shared">
+      <HintPath>bin\Debug\netcoreapp3.1\OxyPlot.Wpf.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

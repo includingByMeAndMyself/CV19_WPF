@@ -1,26 +1,20 @@
 ﻿using CV19.Infrastucture.Commands;
 using CV19.Models;
+using CV19.Models.Decanat;
 using CV19.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+
 
 namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        #region TestDataPoints
-
-        private IEnumerable<DataPoint> _testDataPoint;
-
-        public IEnumerable<DataPoint> TestDataPoint 
-        { 
-            get => _testDataPoint;
-            set => Set(ref _testDataPoint, value);
-        }
-
-        #endregion
+        public ObservableCollection<Group> Groups { get; set; }
 
         #region Title : string Заголовок окна
 
@@ -74,16 +68,23 @@ namespace CV19.ViewModels
             CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
 
             #endregion
-
-            var dataPoints = new List<DataPoint>((int)(360/0.1));
-            for(var x = 0d; x <=360; x += 0.1)
+            var student_index = 1;
+            var students = Enumerable.Range(1, 10).Select(i => new Student
             {
-                const double toRad = Math.PI / 180;
-                var y = Math.Sin(x * toRad);
+                Name = $"Name {student_index}",
+                Surname = $"Surname {student_index}",
+                Patronymic = $"Patronymic {student_index++}",
+                Birthday = DateTime.Now,
+                Rating = 0
+            });
 
-                dataPoints.Add(new DataPoint { XValue = x, YValue = y });
-            }
-            TestDataPoint = dataPoints;
+            var groups = Enumerable.Range(1, 20).Select(i => new Group
+            {
+                Name = $"Group {i}",
+                Students = new ObservableCollection<Student>(students)
+            });
+
+            Groups = new ObservableCollection<Group>(groups);
         }
     }
 }
