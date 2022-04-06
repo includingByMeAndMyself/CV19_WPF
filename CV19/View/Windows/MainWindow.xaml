@@ -39,7 +39,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Groups">
-                        <ListBox ItemsSource="{Binding Groups}" 
+                        <ListBox ItemsSource="{Binding Groups}" SelectedIndex="0"
                                  DisplayMemberPath="Name"
                                  SelectedItem="{Binding SelectedGroup}"/>
                     </GroupBox>
@@ -47,8 +47,26 @@
                               Header="{Binding SelectedGroup.Name, 
                                        FallbackValue='Студенты',
                                        TargetNullValue='Группа не выбранна'}">
-                        <DataGrid>
-                            
+                        <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Surname" 
+                                                    Binding="{Binding Surname}"/>
+                                <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Patronymic" 
+                                                    Binding="{Binding Patronymic}"/>
+                                <DataGridTextColumn Header="Birthday" 
+                                                    Binding="{Binding Birthday, 
+                                                              StringFormat=dd.MM.yyyy}"/>
+                                <DataGridTextColumn Header="Rating" 
+                                                    Binding="{Binding Rating}"/>
+                                <DataGridTextColumn Header="Group"
+                                                    Binding=
+                                                    "{Binding DataContext.SelectedGroup.Name, 
+                                                     RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
                 </Grid>
