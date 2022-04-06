@@ -16,6 +16,14 @@ namespace CV19.ViewModels
     {
         public ObservableCollection<Group> Groups { get; set; }
 
+        #region SelectedGroup : Group - Выбранная группа
+        
+        private Group _selectedGroup;
+
+        public Group SelectedGroup { get => _selectedGroup; set => Set(ref _selectedGroup, value); } 
+
+        #endregion
+
         #region Title : string Заголовок окна
 
         private string _title = "Анализ статистики CV19";
@@ -56,8 +64,6 @@ namespace CV19.ViewModels
         }
         
         #endregion
-
-
 
         #endregion
 
