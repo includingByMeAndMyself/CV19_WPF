@@ -50,7 +50,7 @@
                                        TargetNullValue='Группа не выбранна'}">
                         <DataGrid ItemsSource="{Binding SelectedGroup.Students}"
                                   AutoGenerateColumns="False"
-                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
                                   GridLinesVisibility="Vertical"
                                   VerticalGridLinesBrush="DarkGray"
                                   AlternatingRowBackground="LightGray">
@@ -64,12 +64,25 @@
                                 <!--<DataGridTextColumn Header="Birthday" 
                                                     Binding="{Binding Birthday, 
                                                               StringFormat=dd.MM.yyyy}"/>-->
+                                <!--<DataGridTemplateColumn Header="Birthday">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate DataType="decanat:Student">
+                                            <DatePicker SelectedDate="{Binding Birthday}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>-->
                                 <DataGridTemplateColumn Header="Birthday">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate DataType="decanat:Student">
-                                            <DatePicker DisplayDate="{Binding Birthday}"/>
+                                            <TextBlock Text="{Binding Birthday,
+                                                StringFormat='dd.MM.yyyy '}"/>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate DataType="decanat:Student">
+                                            <DatePicker SelectedDate="{Binding Birthday}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Rating" 
                                                     Binding="{Binding Rating}"/>
